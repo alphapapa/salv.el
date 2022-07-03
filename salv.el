@@ -80,6 +80,8 @@ according to `salv-idle-seconds'."
           (salv--run-timer)))
     ;; Disable mode.
     (setq-local first-change-hook (remq #'salv--run-timer first-change-hook))
+    (when (equal first-change-hook (default-value 'first-change-hook))
+      (kill-local-variable 'first-change-hook))
     (when salv-idle-timer
       (cancel-timer salv-idle-timer)
       (setf salv-idle-timer nil))))
