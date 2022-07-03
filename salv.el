@@ -61,7 +61,7 @@
   "Automatically save buffer when Emacs is idle for so many seconds."
   :group 'convenience)
 
-(defcustom salv-idle-duration 5
+(defcustom salv-idle-seconds 5
   "Automatically save buffer when Emacs is idle this many seconds."
   :type 'number)
 
@@ -71,7 +71,7 @@
 (define-minor-mode salv-mode
   "Automatically save buffer when Emacs is idle for so many seconds.
 When enabled in a buffer, it will be automatically saved
-according to `salv-idle-duration'."
+according to `salv-idle-seconds'."
   :lighter "Salve"
   (if salv-mode
       (progn
@@ -89,7 +89,7 @@ according to `salv-idle-duration'."
 (defun salv--run-timer ()
   "Run idle timer to save current buffer."
   (setf salv-idle-timer (run-with-idle-timer
-                         salv-idle-duration nil #'salv--save-buffer (current-buffer))))
+                         salv-idle-seconds nil #'salv--save-buffer (current-buffer))))
 
 (defun salv--save-buffer (buffer)
   "Save BUFFER and unset idle timer."
