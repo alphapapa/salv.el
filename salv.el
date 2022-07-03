@@ -1,8 +1,9 @@
-;;; hov.el --- Local minor mode to save a buffer when Emacs is idle  -*- lexical-binding: t; -*-
+;;; salv.el --- Local minor mode to save a modified buffer when idle  -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2022  Adam Porter
 
 ;; Author: Adam Porter <adam@alphapapa.net>
+;; URL: https://github.com/alphapapa/salv.el
 ;; Keywords: convenience
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -20,59 +21,60 @@
 
 ;;; Commentary:
 
-;; Hovel, v. t.  To put in a hovel; to shelter.
+;;   Salve, v. t. & i.
+;;   To save, as a ship or goods, from the perils of the sea.
 
 ;;; Code:
 
 ;;;; Variables
 
-(defvar-local hov-idle-timer nil
+(defvar-local salv-idle-timer nil
   "Per-buffer idle timer.")
 
 ;;;; Customization
 
-(defgroup hov nil
+(defgroup salv nil
   "Automatically save buffer when Emacs is idle for so many seconds."
   :group 'convenience)
 
-(defcustom hov-idle-duration 5
+(defcustom salv-idle-duration 5
   "Automatically save buffer when Emacs is idle this many seconds."
   :type 'number)
 
 ;;;; Commands
 
-(define-minor-mode hov-mode
+(define-minor-mode salv-mode
   "Automatically save buffer when Emacs is idle for so many seconds.
 When enabled in a buffer, it will be automatically saved
-according to `hov-idle-duration'."
-  :lighter "Hovel"
-  (if hov-mode
+according to `salv-idle-duration'."
+  :lighter "Salve"
+  (if salv-mode
       (progn
-        (setq-local first-change-hook (cons #'hov--run-timer first-change-hook))    
+        (setq-local first-change-hook (cons #'salv--run-timer first-change-hook))
         (when (buffer-modified-p)
-          (hov--run-timer)))
+          (salv--run-timer)))
     ;; Disable mode.
-    (setq-local first-change-hook (remq #'hov--run-timer first-change-hook))
-    (when hov-idle-timer
-      (cancel-timer hov-idle-timer)
-      (setf hov-idle-timer nil))))
+    (setq-local first-change-hook (remq #'salv--run-timer first-change-hook))
+    (when salv-idle-timer
+      (cancel-timer salv-idle-timer)
+      (setf salv-idle-timer nil))))
 
 ;;;; Functions
 
-(defun hov--run-timer ()
+(defun salv--run-timer ()
   "Run idle timer to save current buffer."
-  (setf hov-idle-timer (run-with-idle-timer
-                        hov-idle-duration nil #'hov--save-buffer (current-buffer))))
+  (setf salv-idle-timer (run-with-idle-timer
+                         salv-idle-duration nil #'salv--save-buffer (current-buffer))))
 
-(defun hov--save-buffer (buffer)
+(defun salv--save-buffer (buffer)
   "Save BUFFER and unset idle timer."
   (when (buffer-live-p buffer)
     (with-current-buffer buffer
       (save-buffer)
-      (setf hov-idle-timer nil))))
+      (setf salv-idle-timer nil))))
 
 ;;;; Footer
 
-(provide 'hov)
+(provide 'salv)
 
-;;; hov.el ends here
+;;; salv.el ends here
