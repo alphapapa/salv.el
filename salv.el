@@ -4,6 +4,8 @@
 
 ;; Author: Adam Porter <adam@alphapapa.net>
 ;; URL: https://github.com/alphapapa/salv.el
+;; Version: 0.1-pre
+;; Package-Requires: ((emacs "24.3"))
 ;; Keywords: convenience
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -24,6 +26,28 @@
 ;;   Salve, v. t. & i.
 ;;   To save, as a ship or goods, from the perils of the sea.
 
+;;   --Webster, 1913
+
+;; Q: How does this package differ from other ones that automatically
+;; save buffers?
+
+;; A: Salve is a buffer-local minor mode, rather than being a global
+;; mode.  It is activated in buffers the user wants to be saved,
+;; rather than in all buffers (requiring the user to exclude ones that
+;; aren't to be saved).  It uses per-buffer idle timers, rather than a
+;; global timer.  It only runs a timer when a buffer is modified after
+;; being saved, rather than constantly.
+
+;; Because of these characteristics, it's simple and lightweight.  To
+;; use, just, e.g. add `salv-mode' to a major mode hook.  Or, if you
+;; only want it activated in certain conditions, write a simple lambda
+;; to activate it when appropriate.  For example, the author uses:
+
+;;   (add-hook 'org-mode-hook
+;;             (lambda ()
+;;               (when (file-in-directory-p (buffer-file-name) "~/org")
+;;                 (salv-mode))))
+
 ;;; Code:
 
 ;;;; Variables
@@ -43,6 +67,7 @@
 
 ;;;; Commands
 
+;;;###autoload
 (define-minor-mode salv-mode
   "Automatically save buffer when Emacs is idle for so many seconds.
 When enabled in a buffer, it will be automatically saved
