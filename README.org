@@ -20,3 +20,9 @@ Because of these characteristics, it's simple and lightweight.  To use, just, e.
               (when (file-in-directory-p (buffer-file-name) "~/org")
                 (salv-mode))))
 #+end_src
+
+
+Or you could use a ~.dir-locals.el~ file to enable it for all ~org~ buffers visiting files below the directory containing this file:
+#+begin_src elisp
+((org-mode . ((eval . (salv-mode)))))
+#+end_src
