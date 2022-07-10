@@ -58,18 +58,18 @@
 ;;;; Customization
 
 (defgroup salv nil
-  "Automatically save buffer when Emacs is idle for so many seconds."
+  "Automatically save buffer when Emacs is idle."
   :group 'convenience)
 
 (defcustom salv-idle-seconds 5
-  "Automatically save buffer when Emacs is idle this many seconds."
+  "Idle seconds before saving buffer."
   :type 'number)
 
 ;;;; Commands
 
 ;;;###autoload
 (define-minor-mode salv-mode
-  "Automatically save buffer when Emacs is idle for so many seconds.
+  "Automatically save buffer when Emacs is idle.
 When enabled in a buffer, it will be automatically saved
 according to `salv-idle-seconds'."
   :lighter "Salve"
