@@ -17,6 +17,7 @@ Because of these characteristics, it's simple and lightweight.  To use, just, e.
 #+begin_src elisp
   (add-hook 'org-mode-hook
             (lambda ()
-              (when (file-in-directory-p (buffer-file-name) "~/org")
-                (salv-mode))))
+              (when (and (buffer-file-name)
+                         (file-in-directory-p (buffer-file-name) org-directory))
+                (salv-mode 1))))
 #+end_src
