@@ -72,7 +72,7 @@
   "Automatically save buffer when Emacs is idle.
 When enabled in a buffer, it will be automatically saved
 according to `salv-idle-seconds'."
-  :lighter "Salve"
+  :lighter " Salve"
   (if salv-mode
       (progn
         (setq-local first-change-hook (cons #'salv--run-timer first-change-hook))
