@@ -1,10 +1,11 @@
 ;;; salv.el --- Local minor mode to save a modified buffer when idle  -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2022  Adam Porter
+;; Copyright (C) 2022  Free Software Foundation
 
 ;; Author: Adam Porter <adam@alphapapa.net>
+;; Maintainer: Adam Porter <adam@alphapapa.net>
 ;; URL: https://github.com/alphapapa/salv.el
-;; Version: 0.1-pre
+;; Version: 0.1
 ;; Package-Requires: ((emacs "24.3"))
 ;; Keywords: convenience
 

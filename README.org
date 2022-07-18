@@ -10,9 +10,15 @@ To save, as a ship or goods, from the perils of the sea.
 
 *Q:* /How does this package differ from other ones that automatically save buffers?/
 
-*A:* Salve is a buffer-local minor mode, rather than being a global mode.  It is activated in buffers the user wants to be saved, rather than in all buffers (requiring the user to exclude ones that aren't to be saved).  It uses per-buffer idle timers, rather than a global timer.  It only runs a timer when a buffer is modified after being saved, rather than constantly.
+*A:* Salve is a buffer-local minor mode, rather than being a global mode.  It is activated in buffers the user wants to be saved, rather than in all buffers (requiring the user to exclude ones that aren't to be saved).  It uses per-buffer idle timers, rather than a global timer.  It only runs a timer when a buffer is modified after being saved, rather than constantly.  Because of these characteristics, it's simple and lightweight.
 
-Because of these characteristics, it's simple and lightweight.  To use, just, e.g. add ~salv-mode~ to a major mode hook.  Or, if you only want it activated in certain conditions, write a simple lambda to activate it when appropriate.  For example, the author uses:
+* Installation
+
+~salv~ is distributed in [[https://elpa.gnu.org/][GNU ELPA]], which is available in Emacs by default, so it can be installed with the ~package-install~ command.
+
+* Usage
+
+To use, just, e.g. add ~salv-mode~ to a major mode hook.  Or, if you only want it activated in certain conditions, write a simple lambda to activate it when appropriate.  For example, the author uses:
 
 #+begin_src elisp
   (add-hook 'org-mode-hook
@@ -21,3 +27,24 @@ Because of these characteristics, it's simple and lightweight.  To use, just, e.
                          (file-in-directory-p (buffer-file-name) org-directory))
                 (salv-mode 1))))
 #+end_src
+
+* Changelog
+
+** 0.1
+
+Initial release.
+
+* Development
+:PROPERTIES:
+:TOC:      :ignore (descendants)
+:END:
+
+Bug reports, feature requests, suggestions — /oh my/!
+
+** Copyright assignment
+
+This package is part of [[https://www.gnu.org/software/emacs/][GNU Emacs]], being distributed in [[https://elpa.gnu.org/][GNU ELPA]].  Contributions to this project must follow GNU guidelines, which means that, as with other parts of Emacs, patches of more than a few lines must be accompanied by having assigned copyright for the contribution to the FSF.  Contributors who wish to do so may contact [[mailto:emacs-devel@gnu.org][emacs-devel@gnu.org]] to request the assignment form.
+
+* License
+
+GPLv3
