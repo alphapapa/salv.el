@@ -76,6 +76,8 @@ according to `salv-idle-seconds'."
   :lighter " Salve"
   (if salv-mode
       (progn
+        (unless (and (buffer-file-name) (file-writable-p (buffer-file-name)))
+          (user-error "`salv-mode' only works in writable buffers (%S is not)" (buffer-file-name)))
         (setq-local first-change-hook (cons #'salv--run-timer first-change-hook))
         (when (buffer-modified-p)
           (salv--run-timer)))
