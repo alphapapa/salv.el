@@ -68,6 +68,8 @@
 
 ;;;; Commands
 
+;; FIXME: It seems that reverting a buffer that has `salv-mode' active stops the mode from working (probably because the `first-change-hook' gets reset).
+
 ;;;###autoload
 (define-minor-mode salv-mode
   "Automatically save buffer when Emacs is idle.
