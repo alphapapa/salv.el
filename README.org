@@ -30,7 +30,11 @@ To use, just, e.g. add ~salv-mode~ to a major mode hook.  Or, if you only want i
 
 * Changelog
 
-** 0.1
+** v0.2-pre
+
+Nothing new yet.
+
+** v0.1
 
 Initial release.
 

@@ -5,7 +5,7 @@
 ;; Author: Adam Porter <adam@alphapapa.net>
 ;; Maintainer: Adam Porter <adam@alphapapa.net>
 ;; URL: https://github.com/alphapapa/salv.el
-;; Version: 0.1
+;; Version: 0.2-pre
 ;; Package-Requires: ((emacs "24.3"))
 ;; Keywords: convenience
 
